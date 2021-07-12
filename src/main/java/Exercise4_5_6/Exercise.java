@@ -2,9 +2,12 @@ package Exercise4_5_6;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.Set;
@@ -66,11 +69,41 @@ public class Exercise {
 		
 		// #10
 		String regex = "(\\d{2}\\/\\d{2}\\/\\d{4}) (\\d{2}:\\d{2})";
-		Matcher matcher = Pattern.compile(regex).matcher(formattedDateTime);
-		if (matcher.find()) {
-			System.out.printf("Date: %s\n", matcher.group(1));
-			System.out.printf("Time: %s\n", matcher.group(2));
+		Matcher match = Pattern.compile(regex).matcher(formattedDateTime);
+		if (match.find()) {
+			System.out.printf("Date: %s\n", match.group(1));
+			System.out.printf("Time: %s\n", match.group(2));
 		}
+		
+		// #11
+		Calendar calendar = Calendar.getInstance();
+		System.out.printf("Year: %d\n" + "Month: %d\n" + "Day: %d\n" + "Hour: %d\n" + "Minute: %d\n",
+				calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH),
+				calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE));
+
+		// #12
+		
+		System.out.println("\nExercise #12");
+		calendar = new GregorianCalendar(2021, 0, 1);
+		System.out.printf(
+				"Max year value: %d\n" + "Max month value: %d\n" + "Max week value: %d\n" + "Max date value: %d\n",
+				calendar.getActualMaximum(Calendar.YEAR), calendar.getActualMaximum(Calendar.MONTH),
+				calendar.getActualMaximum(Calendar.WEEK_OF_YEAR), calendar.getActualMaximum(Calendar.DATE));
+		
+		// #13
+		Calendar yearCalendar= new GregorianCalendar(2021,1,1);
+		System.out.printf("# of days in Feburary 2021: %d\n", yearCalendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+		yearCalendar= new GregorianCalendar(2020,1,1);
+		System.out.printf("# of days in Feburary 2020: %d\n", yearCalendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+		
+		// #14
+		System.out.printf("Number of days in March 2021: %d\n", UserMainCode.getNumberOfDays(2021, 2));
+		
+		//# 15
+		ArrayList<Integer> a = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+		ArrayList<Integer> b = new ArrayList<>(Arrays.asList(6, 7, 8, 9, 10));
+		ArrayList<Integer> ret = UserMainCode.sortMergedArrayList(a, b);
+		System.out.println(ret);
 	}
 
 }
